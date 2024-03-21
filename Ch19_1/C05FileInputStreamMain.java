@@ -27,7 +27,7 @@ public class C05FileInputStreamMain {
 				break;
 
 			for(int i=0; i<data; i++) {
-				System.out.println((char)buffer[i]);
+				System.out.print((char)buffer[i]);
 			}
 		}
 		
