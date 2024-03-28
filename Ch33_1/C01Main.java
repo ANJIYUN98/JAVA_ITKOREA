@@ -1,5 +1,7 @@
 package Ch33_1;
 
+import java.util.Arrays;
+import java.util.List;
 
 @FunctionalInterface
 interface Func{
@@ -15,6 +17,11 @@ interface Func2{
 interface Func3{
 	int sum(int ...args);
 } //04 가변인자
+
+@FunctionalInterface
+interface Func4{
+	List<Integer> sum(int ...args);
+} //05
 
 
 
@@ -48,6 +55,20 @@ public class C01Main {
 		};
 		int result = t4.sum(10,33,4656,567,3,2,1111);
 		System.out.println(result);
+		
+		
+		//05 list 형태 받기 
+		Func4 t5 = (numbers)->{
+			return Arrays.asList(
+					Arrays.stream(numbers) //전달받은 배열을 stream으로 변경
+						.boxed() //wrapper클래스로 바껴 integer 됨
+						.sorted((a,b)->{return b - a;}) //내리차순정렬
+						.toArray(Integer[]::new)
+					);
+		}; //로직전달
+		List<Integer> result1 = t5.sum(55,11,251,9,15,2,1,67);
+		System.out.println(result1);
+		
 	}
 
 }
